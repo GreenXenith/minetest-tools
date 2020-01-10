@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const snippets = require("./snippets.json");
 
-const rootPath = vscode.workspace.workspaceFolders[0].uri.fsPath;
+const rootPath = vscode.workspace.workspaceFolders != undefined ? vscode.workspace.workspaceFolders[0].uri.fsPath : "";
 const luacheckrc = `read_globals = {
 	"DIR_DELIM",
 	"minetest", "core",
@@ -90,6 +90,7 @@ function activate(context) {
 
 	// Mod boilerplate
 	let modproject = vscode.commands.registerCommand("extension.modProject", () => {
+		if (rootPath == "") return;
 		const name = vscode.workspace.name;
 		const files = [
 			{
@@ -119,6 +120,7 @@ function activate(context) {
 
 	// Game boilerplate
 	let gameproject = vscode.commands.registerCommand("extension.gameProject", () => {
+		if (rootPath == "") return;
 		const name = vscode.workspace.name;
 		const files = [
 			{
@@ -146,6 +148,7 @@ function activate(context) {
 
 	// .luacheckrc generator
 	let luacheck = vscode.commands.registerCommand("extension.luacheckrc", () => {
+		if (rootPath == "") return;
 		makeFiles([
 			{
 				"name": ".luacheckrc",
