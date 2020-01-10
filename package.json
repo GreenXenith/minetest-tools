@@ -1,0 +1,59 @@
+{
+	"name": "minetest-tools",
+	"displayName": "Minetest Tools",
+	"description": "",
+	"version": "1.0.0",
+	"engines": {
+		"vscode": "^1.41.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.modProject",
+				"title": "Minetest Tools: New Mod Project"
+			},
+			{
+				"command": "extension.gameProject",
+				"title": "Minetest Tools: New Game Project"
+			},
+			{
+				"command": "extension.luacheckrc",
+				"title": "Minetest Tools: Create .luacheckrc"
+			},
+			{
+				"command": "extension.workspaceToggle",
+				"title": "Minetest Tools: Toggle Workspace Intellisense"
+			}
+		],
+		"configuration": [
+			{
+				"title": "Minetest Tools",
+				"properties": {
+					"minetest-tools.workspaceOnly": {
+						"type": "boolean",
+						"default": true,
+						"description": "Code snippets will only be shown if certain files (init.lua, mods, modpack.txt) are detected in the main workspace folder."
+					}
+				}
+			}
+		]
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.7",
+		"@types/node": "^12.11.7",
+		"@types/vscode": "^1.41.0",
+		"eslint": "^6.6.0",
+		"glob": "^7.1.5",
+		"mocha": "^6.2.2",
+		"typescript": "^3.6.4",
+		"vscode-test": "^1.2.2"
+	}
+}
