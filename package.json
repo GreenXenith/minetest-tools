@@ -56,6 +56,13 @@
 					}
 				}
 			}
+		],
+		"grammars": [
+			{
+				"scopeName": "source.formspec",
+				"path": "formspec.json",
+				"injectTo": ["source.lua"]
+			}
 		]
 	},
 	"devDependencies": {

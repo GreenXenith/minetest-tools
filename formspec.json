@@ -1,0 +1,35 @@
+{
+	"scopeName": "source.formspec",
+	"injectionSelector": "string.quoted",
+	"patterns": [
+		{
+			"match": "([\\w_]+)(\\[(?:(?:(?![^\\\\][\"'])).)*?\\])",
+			"captures": {
+				"1": {
+					"patterns": [
+						{
+							"match": "\\w",
+							"name": "constant.character.escape.lua"
+						}
+					]
+				},
+				"2": {
+					"patterns": [
+						{
+							"match": "((0x|#)[0-9A-F]{3,6})",
+							"name": "constant.numeric.integer.lua"
+						},
+						{
+							"match": "\\.?\\d",
+							"name": "constant.numeric.integer.lua"
+						},
+						{
+							"match": "[,;\\[\\]]",
+							"name": "punctuation.separator.arguments.lua"
+						}
+					]
+				}
+			}
+		}
+	]
+}
