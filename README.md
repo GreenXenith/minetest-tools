@@ -8,13 +8,27 @@
 - `.luacheckrc` generator (globals only)
 - Formspec string syntax highlighting
 
-**Note:** Code snippets were generated from `lua_api.txt` using a Lua script. Quality of descriptions and amount of available snippets may be sub-par. `snippets.json` is __not__ pretty-printed.
+**Note:** Code snippets were generated from `lua_api.txt` using the `parse.lua` script. Quality of descriptions and amount of available snippets may be sub-par. `snippets.json` is __not__ pretty-printed.
 
 ## Extension Settings
 
 * `minetest-tools.workspaceOnly`: Code snippets will only be shown if certain files/folders (`init.lua`, `mods`, `modpack.txt`) are detected in the main workspace folder (default: `true`).
 
+* `editor.quickSuggestions.strings`: Some snippets (formspecs, texture modifiers) depend on string suggestions being enabled. This can be very annoying sometimes, so the snippets will only work if the `string` key in `editor.quickSuggestions` is set to `true`.   
+It should look something like this:
+	```json
+	"editor.quickSuggestions": {
+		"other": true,
+		"comments": false,
+		"strings": true
+	}
+	```
+
 ## Release Notes
+
+### 1.2.0: January 13, 2020
+- Improved autocomplete suggestions
+- Fixed snippets not working with other Intellisense extensions
 
 ### 1.1.0: January 10, 2020
 - Added formspec string syntax highlighting
@@ -22,6 +36,3 @@
 ### 1.0.1: January 10, 2020
 - Fixed extension not loading when not in a workspace
 - Fixed workspace-only commands running when not in a workspace
-
-### 1.0.0: January 10, 2020
-- Initial release.

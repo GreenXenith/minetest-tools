@@ -56,37 +56,50 @@ function makeFiles(files, folders) {
 }
 
 function activate(context) {
-	console.log("Minetest Tools extension is active.");
-
 	// Intellisense
-	let provider = vscode.languages.registerCompletionItemProvider({language: "lua", scheme: "file"}, {
-		provideCompletionItems() {
-			// Only show snippets if in a Minetest workspace
-			if (vscode.workspace.getConfiguration("minetest-tools").get("workspaceOnly") &&
-					!(fs.existsSync(path.join(rootPath, "init.lua")) ||
-					fs.existsSync(path.join(rootPath, "mods")) ||
-					fs.existsSync(path.join(rootPath, "modpack.txt")))
-				) return [];
-
-			let items = [];
-
-			for (const snippet of snippets) {
-				const item = new vscode.CompletionItem(snippet.prefix);
-				item.insertText = new vscode.SnippetString(snippet.body);
-				item.documentation = new vscode.MarkdownString(snippet.desc);
-
-				items.push(item);
-			}
-
-			// Extra snippets (TODO: Move to snippets object)
-			const vec = new vscode.CompletionItem("vector");
-			vec.insertText = new vscode.SnippetString("{x = ${1:0}, y = ${2:0}, z = ${3:0}}");
-			vec.documentation = new vscode.MarkdownString("`{x = 0, y = 0, z = 0}`");
-			items.push(vec);
-
-			return items;
+	let args = [
+		{language: "lua", scheme: "file"},
+		{
+			provideCompletionItems() {
+				// Only show snippets if in a Minetest workspace
+				if (vscode.workspace.getConfiguration("minetest-tools").get("workspaceOnly") &&
+						!(fs.existsSync(path.join(rootPath, "init.lua")) ||
+						fs.existsSync(path.join(rootPath, "mods")) ||
+						fs.existsSync(path.join(rootPath, "modpack.txt")))
+					) return [];
+	
+				let items = [];
+	
+				for (const snippet of snippets) {
+					if (!(snippet.kind == 13 && !vscode.workspace.getConfiguration("editor").get("quickSuggestions").strings)) {
+						const item = new vscode.CompletionItem(snippet.prefix);
+						item.insertText = new vscode.SnippetString(snippet.body);
+						item.documentation = new vscode.MarkdownString(snippet.desc);
+						item.kind = snippet.kind || null;
+		
+						items.push(item);
+					}
+				}
+	
+				// Extra snippets (TODO: Move to snippets object)
+				const vec = new vscode.CompletionItem("vector");
+				vec.insertText = new vscode.SnippetString("{x = ${1:0}, y = ${2:0}, z = ${3:0}}");
+				vec.documentation = new vscode.MarkdownString("`{x = 0, y = 0, z = 0}`");
+				items.push(vec);
+	
+				return items;
+			},
 		}
-	});
+	];
+
+	for (const snippet of snippets) {
+		const char = snippet.prefix.charAt(0);
+		if (!args.includes(char)) {
+			args.push(char);
+		}
+	}
+
+	let completion = vscode.languages.registerCompletionItemProvider.apply(null, args);
 
 	// Mod boilerplate
 	let modproject = vscode.commands.registerCommand("extension.modProject", () => {
@@ -165,7 +178,9 @@ function activate(context) {
 		vscode.window.showInformationMessage(newVal ? "Minetest Intellisense active in workspace only." : "Minetest Intellisense active for all Lua files.");
 	})
 
-	context.subscriptions.push(provider, modproject, gameproject, luacheck, toggle);
+	context.subscriptions.push(completion, modproject, gameproject, luacheck, toggle);
+
+	console.log("Minetest Tools extension is active.");
 }
 exports.activate = activate;
 
