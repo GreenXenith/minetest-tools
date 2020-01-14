@@ -3,6 +3,16 @@ const fs = require("fs");
 const path = require("path");
 const snippets = require("./snippets.json");
 
+// const extraSnippets = [
+// 	{
+// 		prefix: "minetest",
+// 		body: "minetest",
+// 		desc: "Global Minetest namespace.",
+// 		kind: 4,
+// 		detail: "(table)",
+// 	}
+// ];
+
 const rootPath = vscode.workspace.workspaceFolders != undefined ? vscode.workspace.workspaceFolders[0].uri.fsPath : "";
 const luacheckrc = `read_globals = {
 	"DIR_DELIM",
@@ -57,49 +67,36 @@ function makeFiles(files, folders) {
 
 function activate(context) {
 	// Intellisense
-	let args = [
-		{language: "lua", scheme: "file"},
-		{
-			provideCompletionItems() {
-				// Only show snippets if in a Minetest workspace
-				if (vscode.workspace.getConfiguration("minetest-tools").get("workspaceOnly") &&
-						!(fs.existsSync(path.join(rootPath, "init.lua")) ||
-						fs.existsSync(path.join(rootPath, "mods")) ||
-						fs.existsSync(path.join(rootPath, "modpack.txt")))
-					) return [];
+	let completion = vscode.languages.registerCompletionItemProvider({language: "lua", scheme: "file"}, {
+		provideCompletionItems(document, position) {
+			// Only show snippets if in a Minetest workspace
+			if (vscode.workspace.getConfiguration("minetest-tools").get("workspaceOnly") &&
+					!(fs.existsSync(path.join(rootPath, "init.lua")) ||
+					fs.existsSync(path.join(rootPath, "mods")) ||
+					fs.existsSync(path.join(rootPath, "modpack.txt")))
+				) return [];
+
+			let token = document.getText(new vscode.Range(new vscode.Position(position.line, position.character - 1), position));
+			if (token == ".") {
+				token = document.getText(new vscode.Range(new vscode.Position(position.line, 0), position)).match(/(\w+)\.$/)[1];
+			}
+			let items = [];
+
+			for (const snippet of snippets) {
+				if (snippet.token == token && !(snippet.kind == 13 && !vscode.workspace.getConfiguration("editor").get("quickSuggestions").strings)) {
+					const item = new vscode.CompletionItem(snippet.prefix);
+					item.insertText = new vscode.SnippetString(snippet.body);
+					item.documentation = new vscode.MarkdownString(snippet.desc);
+					item.kind = snippet.kind || null;
+					item.detail = snippet.detail || snippet.prefix;
 	
-				let items = [];
-	
-				for (const snippet of snippets) {
-					if (!(snippet.kind == 13 && !vscode.workspace.getConfiguration("editor").get("quickSuggestions").strings)) {
-						const item = new vscode.CompletionItem(snippet.prefix);
-						item.insertText = new vscode.SnippetString(snippet.body);
-						item.documentation = new vscode.MarkdownString(snippet.desc);
-						item.kind = snippet.kind || null;
-		
-						items.push(item);
-					}
+					items.push(item);
 				}
-	
-				// Extra snippets (TODO: Move to snippets object)
-				const vec = new vscode.CompletionItem("vector");
-				vec.insertText = new vscode.SnippetString("{x = ${1:0}, y = ${2:0}, z = ${3:0}}");
-				vec.documentation = new vscode.MarkdownString("`{x = 0, y = 0, z = 0}`");
-				items.push(vec);
-	
-				return items;
-			},
-		}
-	];
+			}
 
-	for (const snippet of snippets) {
-		const char = snippet.prefix.charAt(0);
-		if (!args.includes(char)) {
-			args.push(char);
-		}
-	}
-
-	let completion = vscode.languages.registerCompletionItemProvider.apply(null, args);
+			return items;
+		},
+	}, ":", ".", "[");
 
 	// Mod boilerplate
 	let modproject = vscode.commands.registerCommand("extension.modProject", () => {

@@ -1,3 +1,7 @@
+
+### 1.3.0: January 13, 2020
+- Reworked intellisense
+
 ### 1.2.0: January 13, 2020
 - Improved autocomplete suggestions
 - Fixed snippets not working with other Intellisense extensions

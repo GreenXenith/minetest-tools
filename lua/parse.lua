@@ -3,6 +3,7 @@
 
 local json = require("json")
 local parse = {}
+local globals = {"dump", "dump2"}
 
 function table.exists(t, value)
 	for k, v in pairs(t) do
@@ -154,9 +155,13 @@ parse.snippets = function()
 	local types = {
 		functions = function(line, list, snippets, current)
 			if table.exists(list, line) then
+				local token = ":"
+				if line:match("`%w+%.") or (line:match("`([%w_-]+)%(") and table.exists(globals, line:match("`([%w_-]+)%("))) then
+					token = line:match("`(%w+)%.")
+				end
 				snippets[#snippets + 1] = {
-					prefix = line:match("`(.-)%("),
-					body = line:match("%* `(.-)`"):gsub("(%(.*%))", function(args)
+					prefix = line:match("([%w_-]+)%("),
+					body = line:match("%* `%w*%.?(.-)`"):gsub("(%(.*%))", function(args)
 						local a = 0
 						return args:gsub("[%w%s_-]+", function(arg)
 							a = a + 1
@@ -165,6 +170,8 @@ parse.snippets = function()
 					end),
 					desc = (line:match("`:? (.*)") or ""):gsub("\"", "\\\""),
 					kind = 2,
+					detail = line:match("%* `(.-)`"),
+					token = token,
 				}
 				current = true
 			elseif current and not line:match("^%s*$") then
@@ -191,6 +198,8 @@ parse.snippets = function()
 					end),
 					desc = "",
 					kind = 13,
+					detail = line:match("`%[(.-)[`:]"),
+					token = "[",
 				}
 				current = 1
 			elseif current and line:match("^%w") and not line:match("^Example:") then
@@ -218,6 +227,8 @@ parse.snippets = function()
 					end),
 					desc = "",
 					kind = 13,
+					detail = line:match("`(.-)`"):gsub("[<>]", ""),
+					token = "", -- Lack of token means elements wont be autocompleted
 				}
 				current = 1
 			elseif current and line:match("^%*") then
@@ -235,10 +246,12 @@ parse.snippets = function()
 		tables = function(line, list, snippets, current)
 			if table.exists(list, line) then
 				snippets[#snippets + 1] = {
-					prefix = line:match("`(.-)`"),
-					body = line:match("`(.-)`"),
+					prefix = line:match("`%w+%.(.-)`"),
+					body = line:match("`%w+%.(.-)`"),
 					desc = "",
 					kind = 5,
+					detail = line:match("`(.-)`"),
+					token = "minetest",
 				}
 				current = true
 			elseif current then
