@@ -24,6 +24,10 @@ It should look something like this:
 	}
 	```
 
+## TODO
+
+* Fix formspec element autocomplete and add no-namespace snippets (needs token-independent snippets)
+
 ## Release Notes
 
 ### 1.3.0: January 13, 2020
