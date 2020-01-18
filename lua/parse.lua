@@ -161,7 +161,7 @@ parse.snippets = function()
 				end
 				snippets[#snippets + 1] = {
 					prefix = line:match("([%w_-]+)%("),
-					body = line:match("%* `%w*%.?(.-)`"):gsub("(%(.*%))", function(args)
+					body = line:match("%* `(%w*%.?.-)`"):gsub("^%w+%.", ""):gsub("(%(.*%))", function(args)
 						local a = 0
 						return args:gsub("[%w%s_-]+", function(arg)
 							a = a + 1
