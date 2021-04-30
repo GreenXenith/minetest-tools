@@ -1,8 +1,8 @@
 {
-	"scopeName": "source.formspec",
-	"injectionSelector": "string",
-	"patterns": [
-		{
+    "scopeName": "source.formspec",
+    "injectionSelector": "string",
+    "patterns": [
+        {
             "match": "([a-z0-9_\\-]+?)(\\[[^'\"\\[\\]]*\\]?)",
             "captures": {
                 "1": {
@@ -25,6 +25,6 @@
                     ]
                 }
             }
-		}
-	]
+        }
+    ]
 }

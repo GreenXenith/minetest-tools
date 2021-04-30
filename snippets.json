@@ -10,15 +10,15 @@
         "description": "The Minetest namespace."
     },
 
-	"dump": {
-		"prefix": "dump",
-		"body": "dump(${1:obj}, ${2:dumped})$0",
-		"description": "`Returns a string which makes `obj` human-readable.`"
-	},
+    "dump": {
+        "prefix": "dump",
+        "body": "dump(${1:obj}, ${2:dumped})$0",
+        "description": "`Returns a string which makes `obj` human-readable.`"
+    },
     "dump2": {
-		"prefix": "dump2",
-		"body": "dump2(${1:obj}, ${2:name}, ${3:dumped})$0",
-		"description": "`Returns a string which makes `obj` human-readable, handles reference loops."
+        "prefix": "dump2",
+        "body": "dump2(${1:obj}, ${2:name}, ${3:dumped})$0",
+        "description": "`Returns a string which makes `obj` human-readable, handles reference loops."
     },
 
     "Raycast": {
