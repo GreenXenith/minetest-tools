@@ -5,15 +5,24 @@ const snippets = require("./smartsnippets.json");
 
 const rootPath = vscode.workspace.workspaceFolders != undefined ? vscode.workspace.workspaceFolders[0].uri.fsPath : "";
 const luacheckrc = `read_globals = {
-	"DIR_DELIM",
-	"minetest", "core",
-	"dump", "dump2",
-	"vector",
-	"VoxelManip", "VoxelArea",
-	"PseudoRandom", "PcgRandom",
-	"ItemStack",
-	"Settings",
-	"unpack",
+	"DIR_DELIM", "INIT",
+
+    "minetest", "core",
+    "dump", "dump2",
+
+    "Raycast",
+    "Settings",
+    "PseudoRandom",
+    "PerlinNoise",
+    "VoxelManip",
+    "SecureRandom",
+    "VoxelArea",
+    "PerlinNoiseMap",
+    "PcgRandom",
+    "ItemStack",
+    "AreaStore",
+
+    "vector",
 
 	table = {
 		fields = {
@@ -21,6 +30,7 @@ const luacheckrc = `read_globals = {
 			"indexof",
 			"insert_all",
 			"key_value_swap",
+            "shuffle",
 		}
 	},
 
