@@ -1,35 +1,30 @@
 {
 	"scopeName": "source.formspec",
-	"injectionSelector": "string.quoted",
+	"injectionSelector": "string",
 	"patterns": [
 		{
-			"match": "([\\w_]+)(\\[(?:(?:(?![^\\\\][\"'])).)*?\\])",
-			"captures": {
-				"1": {
-					"patterns": [
-						{
-							"match": "\\w",
-							"name": "constant.character.escape.lua"
-						}
-					]
-				},
-				"2": {
-					"patterns": [
-						{
-							"match": "((0x|#)[0-9A-F]{3,6})",
-							"name": "constant.numeric.integer.lua"
-						},
-						{
-							"match": "\\.?\\d",
-							"name": "constant.numeric.integer.lua"
-						},
-						{
-							"match": "[,;\\[\\]]",
-							"name": "punctuation.separator.arguments.lua"
-						}
-					]
-				}
-			}
+            "match": "([a-z0-9_\\-]+?)(\\[[^'\"\\[\\]]*\\]?)",
+            "captures": {
+                "1": {
+                    "name": "entity.name.function.lua"
+                },
+                "2": {
+                    "patterns": [
+                        {
+                            "match": "[,;\\[\\]\\{\\}\\(\\)]",
+                            "name": "punctuation.separator.lua"
+                        },
+                        {
+                            "match": "((0x|#)[0-9A-F]+)|(\\d\\.\\d)|\\d",
+                            "name": "constant.numeric.lua"
+                        },
+                        {
+                            "match": "true|false",
+                            "name": "constant.language.lua"
+                        }
+                    ]
+                }
+            }
 		}
 	]
 }
