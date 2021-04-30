@@ -57,6 +57,12 @@
 				}
 			}
 		],
+        "snippets": [
+            {
+                "language": "lua",
+                "path": "./snippets.json"
+            }
+        ],
 		"grammars": [
 			{
 				"scopeName": "source.formspec",

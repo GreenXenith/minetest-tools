@@ -1,17 +1,7 @@
 const vscode = require("vscode");
 const fs = require("fs");
 const path = require("path");
-const snippets = require("./snippets.json");
-
-// const extraSnippets = [
-// 	{
-// 		prefix: "minetest",
-// 		body: "minetest",
-// 		desc: "Global Minetest namespace.",
-// 		kind: 4,
-// 		detail: "(table)",
-// 	}
-// ];
+const snippets = require("./smartsnippets.json");
 
 const rootPath = vscode.workspace.workspaceFolders != undefined ? vscode.workspace.workspaceFolders[0].uri.fsPath : "";
 const luacheckrc = `read_globals = {
@@ -76,25 +66,26 @@ function activate(context) {
 					fs.existsSync(path.join(rootPath, "modpack.txt")))
 				) return [];
 
-			let token = document.getText(new vscode.Range(new vscode.Position(position.line, position.character - 1), position));
-			if (token == ".") {
-				token = document.getText(new vscode.Range(new vscode.Position(position.line, 0), position)).match(/(\w+)\.$/)[1];
-			}
-			let items = [];
+			const line = document.getText(new vscode.Range(new vscode.Position(position.line, 0), position));
+            const afterpos = new vscode.Range(position, new vscode.Position(position.line, position.character + 1));
+            const after = document.getText(afterpos);
 
-			for (const snippet of snippets) {
-				if (snippet.token == token && !(snippet.kind == 13 && !vscode.workspace.getConfiguration("editor").get("quickSuggestions").strings)) {
-					const item = new vscode.CompletionItem(snippet.prefix);
+            let items = [];
+
+            for (const snippet of snippets) {
+                if (snippet.token && line.match(new RegExp(`${snippet.token.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")}(?![^\\w\\n\\s\\r\\-])[\\w\\n\\s\\r\\-]*`))) {
+					let item = new vscode.CompletionItem(snippet.prefix);
 					item.insertText = new vscode.SnippetString(snippet.body);
 					item.documentation = new vscode.MarkdownString(snippet.desc);
-					item.kind = snippet.kind || null;
+					item.kind = snippet.kind;
 					item.detail = snippet.detail || snippet.prefix;
-	
-					items.push(item);
-				}
-			}
+                    item.additionalTextEdits = (snippet.token.match(/^[\(\[\{]$/) && after.match(/[\}\]\)]/)) ? [vscode.TextEdit.delete(afterpos)] : null;
 
-			return items;
+					items.push(item);
+                }
+            }
+
+            return items;
 		},
 	}, ":", ".", "[");
 
