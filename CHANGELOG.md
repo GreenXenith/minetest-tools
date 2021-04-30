@@ -1,3 +1,16 @@
+### 1.4.0: April 30, 2021
+- API autocompletion bumped to Minetest version 5.4.1
+- Rewrote snippet generator
+  - No longer requires manual input
+  - Captures all API methods, tables, and constants
+  - Adjusted quick info formatting
+  - Includes API links
+- CompletionItemProvider can handle some backspacing now
+- Texture modifiers will remove trailing bracket if autocompleted
+- Global constructors and namespaces now have snippets
+- Added missing globals to .luacheckrc
+- Fixed and tweaked formspec highlighting
+
 ### 1.3.1: January 18, 2020
 - Fixed incorrect method snippets
 
