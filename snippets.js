@@ -69,8 +69,8 @@ types.push([/#### `\[.+\n\n(?:[^\n]+\n+(?!(?:####)|(?:\-+\n)))+/g, (entry, api) 
 // Constants
 types.push([/[`']minetest\.[A-Z_\-]+[`'](?:.{5,}|.{0})/g, (entry, api) => {
     return {
-        prefix: entry.match(/\.(.+?)[`']/)[1],
-        body: entry.match(/[`'](.+?)[`']/)[1],
+        prefix: entry.match(/[`'](.+?)[`']/)[1],
+        body: entry.match(/\.(.+?)[`']/)[1],
         desc: entry.replace(/'/g, "`") + docLink(api, entry),
         kind: 11,
         detail: "Constant",
