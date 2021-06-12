@@ -15,9 +15,9 @@ const objects = (entry, api) => {
     const lookfor = name.match(/(?:\S+?\.)?([^\(]+)/)[1];
     // The completed thing without namespaces and with argument tabstops if applicable
     let i = 0;
-    const complete = name.match(/([^.]*)$/)[0].replace(/\(([^(]+)\)/, args => {
-        return args.replace(/(?! )[\w\- ]+/g, arg => `\${${++i}:${arg}}`);
-    }).replace(/(\(function\(.+)\)$/, `$1\n\t$${++i}\nend)`) + "$0";
+    const complete = name.match(/^(?:\w+\.)?(.*)$/)[1].replace(/\(([^(]+)\)/, args => {
+        return args.replace(/(?! )(?:\[, )?[\w\- .\]]+/g, arg => `\${${++i}:${arg}}`);
+    }).replace(/(\(function\(.+)\)$/, `$1\n\t$0\nend)`);
     // Full method documentation
     const doc = entry.match(/^\* ([\S\s]*?)\n*$/)[1].replace(/\n    /g, "\n") + docLink(api, entry); // Remove extra indent
     // Type of thing
