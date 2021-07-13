@@ -1,3 +1,7 @@
+### 1.4.1: June 12, 2021
+- Fixed function arguments breaking on certain characters
+- Fixed autocompletion of constants
+
 ### 1.4.0: April 30, 2021
 - API autocompletion bumped to Minetest version 5.4.1
 - Rewrote snippet generator

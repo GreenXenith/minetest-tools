@@ -32,6 +32,10 @@ It should look something like this:
 
 ## Release Notes
 
+### 1.4.1: June 12, 2021
+- Fixed function arguments breaking on certain characters
+- Fixed autocompletion of constants
+
 ### 1.4.0: April 30, 2021
 - API autocompletion bumped to Minetest version 5.4.1
 - Rewrote snippet generator
@@ -48,6 +52,3 @@ It should look something like this:
 
 ### 1.3.1: January 18, 2020
 - Fixed incorrect method snippets
-
-### 1.3.0: January 13, 2020
-- Reworked intellisense
