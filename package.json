@@ -71,6 +71,16 @@
                     "source.lua"
                 ]
             }
+        ],
+        "jsonValidation": [
+            {
+                "fileMatch": ".cdb.json",
+                "url": "https://content.minetest.net/api/cdb_schema/"
+            },
+            {
+                "fileMatch": ".cdb.json",
+                "url": "./cdb_schema.json"
+            }
         ]
     },
     "devDependencies": {
