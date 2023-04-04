@@ -1,6 +1,7 @@
 import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
+import config from "./config";
 import snippets = require("./smartsnippets.json");
 
 const rootPath = vscode.workspace.workspaceFolders !== undefined ? vscode.workspace.workspaceFolders[0].uri.fsPath : "";
@@ -256,6 +257,8 @@ function activate(context: vscode.ExtensionContext) {
                 : "Minetest Intellisense active for all Lua files."
         );
     });
+
+    config.initConfig(context);
 
     context.subscriptions.push(completion, modproject, gameproject, luacheck, toggle);
 
