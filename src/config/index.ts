@@ -2,7 +2,7 @@ import * as vscode from "vscode";
 import * as fs from "fs";
 import * as path from "path";
 
-type ExtensionConfigContext = "game" | "mod";
+type ExtensionConfigContext = "none" | "game" | "mod";
 
 /**
  * Represent the configuration of the extension for a workspace folder
@@ -13,10 +13,8 @@ type ExtensionConfigFolder = {
 
 /**
  * Array of workspace folders configuration, full fs path as key
- *
- * Having null as value means that the folder have no configuration file
  */
-const workspaceConfig = new Map<string, ExtensionConfigFolder | null>();
+const workspaceConfig = new Map<string, ExtensionConfigFolder>();
 
 /**
  * Update workspace configuration map when opened workspaces changes
@@ -57,8 +55,7 @@ function updateConfigFromFileChanges(e: vscode.Uri) {
         for (let k = 0; k < vscode.workspace.workspaceFolders.length; k++) {
             const f = vscode.workspace.workspaceFolders[k];
             try {
-                let d = path.parse(e.fsPath).dir;
-                if (d === f.uri.fsPath) {
+                if (path.parse(e.fsPath).dir === f.uri.fsPath) {
                     workspaceConfig.set(f.uri.fsPath, parseConfig(f));
                 }
             } catch {}
@@ -77,65 +74,79 @@ fsw.onDidDelete(updateConfigFromFileChanges);
  *
  * Only for internal use inside this file
  */
-function parseConfig(f: vscode.WorkspaceFolder): ExtensionConfigFolder | null {
+function parseConfig(f: vscode.WorkspaceFolder): ExtensionConfigFolder {
     const configPath = path.join(f.uri.fsPath, ".minetest-tools.json");
     try {
         const content = fs.readFileSync(configPath, { encoding: "utf-8" });
         const parsedContent = JSON.parse(content);
         if (parsedContent.context !== "game" && parsedContent.context !== "mod") {
-            return null;
+            return { context: "none" };
         } else {
             return {
                 context: parsedContent.context,
             };
         }
     } catch (error) {
-        return null;
+        return { context: "none" };
     }
 }
 
 /**
- * Save a ExtensionConfigFolder to the config file in the root of the given workspace folder
+ * Save the config file of the given workspace folder
  *
- * Only for internal use inside this file
+ * Only for internal use inside this file, should be called after modifying a workspace config
+ *
+ * Return boolean indicating sucess
  */
-function saveConfig(f: vscode.WorkspaceFolder, c: ExtensionConfigFolder | null) {
+function saveConfig(f: vscode.WorkspaceFolder): boolean {
+    let c = workspaceConfig.get(f.uri.fsPath);
+    if (!c) {
+        return false;
+    }
+
     const configPath = path.join(f.uri.fsPath, ".minetest-tools.json");
     try {
-        //const content = fs.readFileSync(configPath, { encoding: "utf-8" });
-        //const parsedContent = JSON.parse(content);
         fs.writeFileSync(configPath, JSON.stringify(c, undefined, 4));
+        return true;
     } catch (error) {
-        return null;
+        return false;
     }
 }
 
 /**
- * Return the configuration for a workspace, or null if context
- */
-function getConfig(w: vscode.WorkspaceFolder): ExtensionConfigFolder | null {
-    let c = workspaceConfig.get(w.uri.fsPath);
-    if (c === undefined) {
-        return null;
-    } else {
-        return c;
-    }
-}
-
-/**
- * Get the configuration of the extension context or "none" for a {@linkcode vscode.WorkspaceFolder WorkspaceFolder}, with TypeScript annotations
- */
-function getContext(w: vscode.WorkspaceFolder): "none" | ExtensionConfigContext {
-    const t = workspaceConfig.get(w.uri.fsPath)?.context;
-    return t ? t : "none";
-}
-
-/**
- * (WIP) Update the configuration of the extension context for the {@linkcode vscode.WorkspaceFolder WorkspaceFolder}
+ * Return the configuration for a workspace
  *
- * @todo should this function be able to actually delete the config file is called with "none"?
+ * Return undefined if workspace folder is invalid
  */
-function setContext(w: vscode.WorkspaceFolder, c: "none" | ExtensionConfigContext) {}
+function getConfig(w: vscode.WorkspaceFolder): ExtensionConfigFolder | undefined {
+    return workspaceConfig.get(w.uri.fsPath);
+}
+
+/**
+ * Get the configuration of the extension context for a {@linkcode vscode.WorkspaceFolder WorkspaceFolder}, with TypeScript annotations
+ *
+ * Return undefined if workspace folder is invalid
+ */
+function getContext(w: vscode.WorkspaceFolder): ExtensionConfigContext | undefined {
+    return workspaceConfig.get(w.uri.fsPath)?.context;
+}
+
+/**
+ * Update the configuration of the extension context for the {@linkcode vscode.WorkspaceFolder WorkspaceFolder}
+ *
+ * Return boolean indicating sucess
+ */
+function setContext(w: vscode.WorkspaceFolder, c: ExtensionConfigContext): boolean {
+    let config = workspaceConfig.get(w.uri.fsPath);
+
+    if (config) {
+        config.context = c;
+        saveConfig(w);
+        return true;
+    } else {
+        return false;
+    }
+}
 
 if (vscode.workspace.workspaceFolders) {
     for (let k = 0; k < vscode.workspace.workspaceFolders.length; k++) {
