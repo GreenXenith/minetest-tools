@@ -8,6 +8,9 @@ type ExtensionConfigContext = "none" | "game" | "mod";
  * Represent the configuration of the extension for a workspace folder
  */
 type ExtensionConfigFolder = {
+    /**
+     * The context of the workspace folder
+     */
     context: ExtensionConfigContext;
 };
 
@@ -22,7 +25,6 @@ const workspaceConfig = new Map<string, ExtensionConfigFolder>();
 let t = vscode.workspace.onDidChangeWorkspaceFolders((e) => {
     for (const r in e.removed) {
         const f = e.removed[r];
-
         workspaceConfig.delete(f.uri.fsPath);
     }
 
@@ -30,8 +32,6 @@ let t = vscode.workspace.onDidChangeWorkspaceFolders((e) => {
         const f = e.added[a];
         workspaceConfig.set(f.uri.fsPath, parseConfig(f));
     }
-
-    //vscode.window.showInformationMessage(workspaceConfig.values());
 });
 
 /**
@@ -46,6 +46,8 @@ if (vscode.workspace.workspaceFolders) {
 
 /**
  * Watch for filesystem changes and update workspaceConfig
+ *
+ * If the file at given URI isn't at the root of the workspace folder, will not update configuration
  */
 
 function updateConfigFromFileChanges(e: vscode.Uri) {
@@ -59,7 +61,6 @@ function updateConfigFromFileChanges(e: vscode.Uri) {
                     workspaceConfig.set(f.uri.fsPath, parseConfig(f));
                 }
             } catch {}
-            //vscode.window.showInformationMessage("FULL: " + f.uri.path + ": " + getContext(f));
         }
     }
 }
@@ -148,12 +149,14 @@ function setContext(w: vscode.WorkspaceFolder, c: ExtensionConfigContext): boole
     }
 }
 
+// TODO: remove this debug display
+/*
 if (vscode.workspace.workspaceFolders) {
     for (let k = 0; k < vscode.workspace.workspaceFolders.length; k++) {
         const f = vscode.workspace.workspaceFolders[k];
         vscode.window.showInformationMessage(f.uri.fsPath + " : " + getContext(f));
     }
-}
+}*/
 
 /**
  * Register VSCode disposals (should only be called once in extension.ts)
