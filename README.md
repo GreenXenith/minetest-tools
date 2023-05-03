@@ -3,7 +3,7 @@
 
 ## Features
 
-- Minetest (5.4.1) Lua API code autocompletion
+- Minetest (5.7.0) Lua API code autocompletion
 - Mod and game folder structure boilerplates
 - `.luacheckrc` generator (globals only)
 - Formspec string syntax highlighting
@@ -32,6 +32,10 @@ It should look something like this:
 
 ## Release Notes
 
+### 1.4.2: May 2, 2023
+- API autocompletion bumped to Minetest version 5.7.0
+- Only store API reference line numbers in snippet file to reduce size
+
 ### 1.4.1: June 12, 2021
 - Fixed function arguments breaking on certain characters
 - Fixed autocompletion of constants
@@ -49,6 +53,3 @@ It should look something like this:
 - Global constructors and namespaces now have snippets
 - Added missing globals to .luacheckrc
 - Fixed and tweaked formspec highlighting
-
-### 1.3.1: January 18, 2020
-- Fixed incorrect method snippets

@@ -1,3 +1,7 @@
+### 1.4.2: May 2, 2023
+- API autocompletion bumped to Minetest version 5.7.0
+- Only store API reference line numbers in snippet file to reduce size
+
 ### 1.4.1: June 12, 2021
 - Fixed function arguments breaking on certain characters
 - Fixed autocompletion of constants
