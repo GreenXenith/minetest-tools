@@ -4,6 +4,7 @@ const path = require("path");
 const snippets = require("./smartsnippets.json");
 
 const rootPath = vscode.workspace.workspaceFolders != undefined ? vscode.workspace.workspaceFolders[0].uri.fsPath : "";
+const doc_api_link = "\n\n[View in lua_api.txt](https://github.com/minetest/minetest/blob/5.7.0/doc/lua_api.txt#";
 const luacheckrc = `read_globals = {
     "DIR_DELIM", "INIT",
 
@@ -86,7 +87,7 @@ function activate(context) {
                 if (snippet.token && line.match(new RegExp(`${snippet.token.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&")}(?![^\\w\\n\\s\\r\\-])[\\w\\n\\s\\r\\-]*`))) {
                     let item = new vscode.CompletionItem(snippet.prefix);
                     item.insertText = new vscode.SnippetString(snippet.body);
-                    item.documentation = new vscode.MarkdownString(snippet.desc);
+                    item.documentation = new vscode.MarkdownString(snippet.desc + (snippet.doc_lines ? doc_api_link + snippet.doc_lines + ")" : ""));
                     item.kind = snippet.kind;
                     item.detail = snippet.detail || snippet.prefix;
                     item.additionalTextEdits = (snippet.token.match(/^[\(\[\{]$/) && after.match(/[\}\]\)]/)) ? [vscode.TextEdit.delete(afterpos)] : null;
