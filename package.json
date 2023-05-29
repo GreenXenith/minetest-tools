@@ -25,6 +25,9 @@
     "activationEvents": [
         "*"
     ],
+    "extensionDependencies": [
+        "vscode.git"
+    ],
     "main": "./out/extension.js",
     "contributes": {
         "commands": [
