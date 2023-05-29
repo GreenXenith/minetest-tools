@@ -52,6 +52,18 @@
                 "title": "Minetest Tools: Configure Material Icon Theme"
             }
         ],
+        "configuration": [
+            {
+                "title": "Minetest Tools",
+                "properties": {
+                    "minetest-tools.gitSupport": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Initialize Git repository when using a template, enable Git integration"
+                    }
+                }
+            }
+        ],
         "menus": {
             "commandPalette": [
                 {
