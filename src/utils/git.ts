@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import { getExtensionConfigGitSupport } from "./global_config";
+import { GitExtension } from "../types/git";
 
 // Assuming the extention is installed and enabled, since we depend on it
 const gitExtension = (vscode.extensions.getExtension<GitExtension>("vscode.git") as vscode.Extension<GitExtension>)
