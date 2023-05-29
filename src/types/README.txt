@@ -1,0 +1,1 @@
+These header files are header files from VSCode builtin extentions. They are taken from the Git tag matching the min supported VSCode version.
