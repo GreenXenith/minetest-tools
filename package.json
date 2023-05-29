@@ -1,107 +1,111 @@
 {
-  "name": "minetest-tools",
-  "displayName": "Minetest Tools",
-  "description": "Useful tools for Minetest developers.",
-  "icon": "icon.png",
-  "version": "1.4.1",
-  "author": {
-    "name": "GreenXenith"
-  },
-  "publisher": "GreenXenith",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/GreenXenith/minetest-tools.git"
-  },
-  "bugs": {
-    "url": "https://github.com/GreenXenith/minetest-tools/issues"
-  },
-  "engines": {
-    "vscode": "^1.75.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "*"
-  ],
-  "main": "./out/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.modProject",
-        "title": "Minetest Tools: New Mod Project"
-      },
-      {
-        "command": "extension.gameProject",
-        "title": "Minetest Tools: New Game Project"
-      },
-      {
-        "command": "extension.luacheckrc",
-        "title": "Minetest Tools: Create .luacheckrc"
-      },
-      {
-        "command": "extension.workspaceToggle",
-        "title": "Minetest Tools: Toggle Workspace Intellisense"
-      }
+    "name": "minetest-tools",
+    "displayName": "Minetest Tools",
+    "description": "Useful tools for Minetest developers.",
+    "icon": "icon.png",
+    "version": "1.4.1",
+    "author": {
+        "name": "GreenXenith"
+    },
+    "publisher": "GreenXenith",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/GreenXenith/minetest-tools.git"
+    },
+    "bugs": {
+        "url": "https://github.com/GreenXenith/minetest-tools/issues"
+    },
+    "engines": {
+        "vscode": "^1.75.0"
+    },
+    "categories": [
+        "Other"
     ],
-    "configuration": [
-      {
-        "title": "Minetest Tools",
-        "properties": {
-          "minetest-tools.workspaceOnly": {
-            "type": "boolean",
-            "default": true,
-            "description": "Code snippets will only be shown if certain files (init.lua, mods, modpack.txt) are detected in the main workspace folder."
-          }
-        }
-      }
+    "activationEvents": [
+        "*"
     ],
-    "snippets": [
-      {
-        "language": "lua",
-        "path": "./src/snippets.json"
-      }
-    ],
-    "grammars": [
-      {
-        "scopeName": "source.formspec",
-        "path": "formspec.json",
-        "injectTo": [
-          "source.lua"
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "minetest-tools.modProject",
+                "title": "Minetest Tools: New Mod Project"
+            },
+            {
+                "command": "minetest-tools.gameProject",
+                "title": "Minetest Tools: New Game Project"
+            },
+            {
+                "command": "minetest-tools.gameMod",
+                "title": "Minetest Tools: New Game Mod"
+            },
+            {
+                "command": "minetest-tools.luacheckrc",
+                "title": "Minetest Tools: Create .luacheckrc"
+            },
+            {
+                "command": "minetest-tools.configureMaterialIconTheme",
+                "title": "Minetest Tools: Configure Material Icon Theme"
+            }
+        ],
+        "menus": {
+            "commandPalette": [
+                {
+                    "command": "minetest-tools.gameMod",
+                    "when": "false"
+                }
+            ],
+            "explorer/context": [
+                {
+                    "command": "minetest-tools.gameMod",
+                    "when": "explorerResourceIsFolder == true"
+                }
+            ]
+        },
+        "grammars": [
+            {
+                "scopeName": "source.formspec",
+                "path": "./src/providers/formspec/formspec.tmGrammar.json",
+                "injectTo": [
+                    "source.lua"
+                ]
+            }
+        ],
+        "jsonValidation": [
+            {
+                "fileMatch": ".cdb.json",
+                "url": "https://content.minetest.net/api/cdb_schema/"
+            },
+            {
+                "fileMatch": ".cdb.json",
+                "url": "./cdb_schema.json"
+            },
+            {
+                "fileMatch": ".minetest-tools.json",
+                "url": "./src/config-schema.json"
+            }
         ]
-      }
-    ],
-    "jsonValidation": [
-      {
-        "fileMatch": ".cdb.json",
-        "url": "https://content.minetest.net/api/cdb_schema/"
-      },
-      {
-        "fileMatch": ".cdb.json",
-        "url": "./cdb_schema.json"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
-    "test": "node ./out/test/runTest.js"
-  },
-  "devDependencies": {
-    "@types/vscode": "^1.75.0",
-    "@types/glob": "^8.0.1",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "16.x",
-    "@typescript-eslint/eslint-plugin": "^5.49.0",
-    "@typescript-eslint/parser": "^5.49.0",
-    "eslint": "^8.33.0",
-    "glob": "^8.1.0",
-    "mocha": "^10.1.0",
-    "typescript": "^4.9.4",
-    "@vscode/test-electron": "^2.2.2"
-  }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.75.0",
+        "@types/glob": "^8.0.1",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "16.x",
+        "@typescript-eslint/eslint-plugin": "^5.49.0",
+        "@typescript-eslint/parser": "^5.49.0",
+        "eslint": "^8.33.0",
+        "glob": "^8.1.0",
+        "mocha": "^10.1.0",
+        "typescript": "^4.9.4",
+        "@vscode/test-electron": "^2.2.2"
+    }
 }
