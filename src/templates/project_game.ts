@@ -61,6 +61,7 @@ function setupGameInWorkspaceFolder(w: vscode.WorkspaceFolder) {
                 config.setContext(w, "game");
                 setupGameFiles(w, value);
 
+                utils.initGitRepoIfEnabled(w.uri);
                 utils.openWithSnippet(path.join(folder, "game.conf"), gameCompletionSnippet(value));
             }
         });

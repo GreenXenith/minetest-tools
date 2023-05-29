@@ -89,7 +89,7 @@ function setupModInWorkspaceFolder(w: vscode.WorkspaceFolder) {
                 setupModFiles(w, value);
 
                 // TODO: make a title prediction
-
+                utils.initGitRepoIfEnabled(w.uri);
                 utils.openWithSnippet(path.join(folder, "mod.conf"), modCompletionSnippet(value));
             }
         });
