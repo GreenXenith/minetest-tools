@@ -41,7 +41,7 @@ $0`);
 }
 
 function setupGameInWorkspaceFolder(w: vscode.WorkspaceFolder) {
-    let folder = w.uri.toString();
+    let folder = w.uri.fsPath;
     let folderName = path.parse(folder).base;
 
     // Determine plausible game title
