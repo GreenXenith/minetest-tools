@@ -1,0 +1,106 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "description": "Settings of Minetest Tools",
+    "type": "object",
+    "required": [
+        "context"
+    ],
+    "properties": {
+        "context": {
+            "description": "Context of the folder",
+            "enum": [
+                "none",
+                "game",
+                "mod"
+            ],
+            "enumDescriptions": [
+                "Current folder isn't a Minetest context",
+                "Current folder is a Minetest game",
+                "Current folder is a Minetest mod"
+            ]
+        },
+        "translations": {
+            "type": "object",
+            "properties": {
+                "enabled": {
+                    "type": "boolean"
+                },
+                "languages": {
+                    "items": {
+                        "enum": [
+                            "be",
+                            "bg",
+                            "ca",
+                            "cs",
+                            "da",
+                            "de",
+                            "el",
+                            "en",
+                            "eo",
+                            "es",
+                            "et",
+                            "eu",
+                            "fi",
+                            "fr",
+                            "gd",
+                            "gl",
+                            "hu",
+                            "id",
+                            "it",
+                            "ja",
+                            "jbo",
+                            "kk",
+                            "ko",
+                            "lt",
+                            "lv",
+                            "ms",
+                            "nb",
+                            "nl",
+                            "nn",
+                            "pl",
+                            "pt",
+                            "pt_BR",
+                            "ro",
+                            "ru",
+                            "sk",
+                            "sl",
+                            "sr_Cyrl",
+                            "sr_Latn",
+                            "sv",
+                            "sw",
+                            "tr",
+                            "uk",
+                            "vi",
+                            "zh_CN",
+                            "zh_TW"
+                        ]
+                    },
+                    "type": "array",
+                    "uniqueItems": true
+                }
+            }
+        },
+        "mod_default": {
+            "type": "object",
+            "properties": {
+                "disabled_folders": {
+                    "description": "Folders that will not be created when creating a game mod",
+                    "items": {
+                        "enum": [
+                            "textures",
+                            "models",
+                            "sounds"
+                        ]
+                    },
+                    "type": "array",
+                    "uniqueItems": true
+                },
+                "create_readme": {
+                    "description": "Create a README.md file when creating a game mod",
+                    "type": "boolean",
+                    "default": true
+                }
+            }
+        }
+    }
+}

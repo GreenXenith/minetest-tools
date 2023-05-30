@@ -94,11 +94,11 @@
             },
             {
                 "fileMatch": ".cdb.json",
-                "url": "./cdb_schema.json"
+                "url": "./src/json/cdb-schema.json"
             },
             {
                 "fileMatch": ".minetest-tools.json",
-                "url": "./src/config-schema.json"
+                "url": "./src/json/config-schema.json"
             }
         ]
     },
