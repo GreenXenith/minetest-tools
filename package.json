@@ -44,8 +44,8 @@
                 "title": "Minetest Tools: New Game Project"
             },
             {
-                "command": "minetest-tools.gameMod",
-                "title": "Minetest Tools: New Game Mod"
+                "command": "minetest-tools.folderMod",
+                "title": "Minetest Tools: New Folder Mod"
             },
             {
                 "command": "minetest-tools.luacheckrc",
@@ -71,13 +71,13 @@
         "menus": {
             "commandPalette": [
                 {
-                    "command": "minetest-tools.gameMod",
+                    "command": "minetest-tools.folderMod",
                     "when": "false"
                 }
             ],
             "explorer/context": [
                 {
-                    "command": "minetest-tools.gameMod",
+                    "command": "minetest-tools.folderMod",
                     "when": "explorerResourceIsFolder == true"
                 }
             ]
