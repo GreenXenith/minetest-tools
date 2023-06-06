@@ -32,6 +32,10 @@
     "contributes": {
         "commands": [
             {
+                "command": "minetest-tools.browseOnlineResources",
+                "title": "Minetest Tools: Browse Online Resources"
+            },
+            {
                 "command": "minetest-tools.modProject",
                 "title": "Minetest Tools: New Mod Project"
             },
