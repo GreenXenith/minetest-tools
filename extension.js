@@ -4,7 +4,7 @@ const path = require("path");
 const snippets = require("./smartsnippets.json");
 
 const rootPath = vscode.workspace.workspaceFolders != undefined ? vscode.workspace.workspaceFolders[0].uri.fsPath : "";
-const doc_api_link = "\n\n[View in lua_api.txt](https://github.com/minetest/minetest/blob/5.7.0/doc/lua_api.txt#";
+const doc_api_link = "\n\n[View in lua_api.txt](https://github.com/minetest/minetest/blob/5.9.1/doc/lua_api.md?plain=1#";
 const luacheckrc = `read_globals = {
     "DIR_DELIM", "INIT",
 

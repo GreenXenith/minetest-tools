@@ -1,3 +1,6 @@
+### 1.4.3: November 4, 2024
+- API autocompletion bumped to Minetest version 5.9.1
+
 ### 1.4.2: May 2, 2023
 - API autocompletion bumped to Minetest version 5.7.0
 - Only store API reference line numbers in snippet file to reduce size

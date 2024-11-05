@@ -3,7 +3,7 @@
 
 ## Features
 
-- Minetest (5.7.0) Lua API code autocompletion
+- Minetest (5.9.1) Lua API code autocompletion
 - Mod and game folder structure boilerplates
 - `.luacheckrc` generator (globals only)
 - Formspec string syntax highlighting
@@ -31,6 +31,9 @@ It should look something like this:
 * Fix formspec element autocomplete (this will require a language server)
 
 ## Release Notes
+
+### 1.4.3: November 4, 2024
+- API autocompletion bumped to Minetest version 5.9.1
 
 ### 1.4.2: May 2, 2023
 - API autocompletion bumped to Minetest version 5.7.0
