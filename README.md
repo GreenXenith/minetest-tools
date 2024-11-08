@@ -1,4 +1,4 @@
-# Minetest Tools
+# Luanti (formerly Minetest) Tools
 [Repository](https://github.com/GreenXenith/minetest-tools/) | [Issues](https://github.com/GreenXenith/minetest-tools/issues/)
 
 ## Features
@@ -8,7 +8,7 @@
 - `.luacheckrc` generator (globals only)
 - Formspec string syntax highlighting
 
-Note: Code snippets were generated from `lua_api.txt` using `snippets.js`. Quality not guaranteed.  
+Note: Code snippets were generated from `lua_api.md` using `snippets.js`. Quality not guaranteed.  
 
 ## Extension Settings
 

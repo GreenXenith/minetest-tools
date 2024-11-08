@@ -2,7 +2,7 @@ const fs = require("fs");
 
 function docLink(api, search) {
     const line = api.substring(0, api.indexOf(search)).split("\n").length;
-    // return line > 1 ? `\n\n[View in lua_api.txt](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.txt#L${line}-L${line + search.split("\n").length - 1})` : ""
+    // return line > 1 ? `\n\n[View in lua_api.md](https://github.com/minetest/minetest/blob/5.4.1/doc/lua_api.md#L${line}-L${line + search.split("\n").length - 1})` : ""
     if (line > 1) return `L${line}-L${line + search.split("\n").length - 1}`;
 }
 
@@ -95,6 +95,6 @@ function getSnippets(api) {
     return snippets;
 }
 
-fs.readFile("./lua_api.txt", "utf8", (err, data) => {
+fs.readFile("./lua_api.md", "utf8", (err, data) => {
     if (!err) fs.writeFile("./smartsnippets.json", JSON.stringify(getSnippets(data)), "utf8", () => {});
 });
