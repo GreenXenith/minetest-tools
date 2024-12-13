@@ -1,79 +1,79 @@
 {
-    "minetest": {
-        "prefix": "minetest",
-        "body": "minetest",
-        "description": "The Minetest namespace."
-    },
-    "core": {
-        "prefix": "core",
-        "body": "core",
-        "description": "The Minetest namespace."
-    },
+  "minetest": {
+    "prefix": "minetest",
+    "body": "minetest",
+    "description": "The Minetest namespace."
+  },
+  "core": {
+    "prefix": "core",
+    "body": "core",
+    "description": "The Minetest namespace."
+  },
 
-    "dump": {
-        "prefix": "dump",
-        "body": "dump(${1:obj}, ${2:dumped})$0",
-        "description": "`Returns a string which makes `obj` human-readable.`"
-    },
-    "dump2": {
-        "prefix": "dump2",
-        "body": "dump2(${1:obj}, ${2:name}, ${3:dumped})$0",
-        "description": "`Returns a string which makes `obj` human-readable, handles reference loops."
-    },
+  "dump": {
+    "prefix": "dump",
+    "body": "dump(${1:obj}, ${2:dumped})$0",
+    "description": "`Returns a string which makes `obj` human-readable.`"
+  },
+  "dump2": {
+    "prefix": "dump2",
+    "body": "dump2(${1:obj}, ${2:name}, ${3:dumped})$0",
+    "description": "`Returns a string which makes `obj` human-readable, handles reference loops."
+  },
 
-    "Raycast": {
-        "prefix": "Raycast",
-        "body": "Raycast(${1:pos1}, ${2:pos2}, ${3:objects}, ${4:liquids})$0",
-        "description": "A raycast on the map. It works with selection boxes."
-    },
-    "Settings": {
-        "prefix": "Settings",
-        "body": "Settings(${1:filename})$0",
-        "description": "An interface to read config files in the format of `minetest.conf`."
-    },
-    "PseudoRandom": {
-        "prefix": "PseudoRandom",
-        "body": "PseudoRandom(${1:seed}, ${2:[sequence]}])$0",
-        "description": "A 32-bit pseudorandom number generator.\nUses PCG32, an algorithm of the permuted congruential generator family, offering very strong randomness."
-    },
-    "PerlinNoise": {
-        "prefix": "PerlinNoise",
-        "body": "PerlinNoise(${1:noiseparams})$0",
-        "description": "A perlin noise generator."
-    },
-    "VoxelManip": {
-        "prefix": "VoxelManip",
-        "body": "VoxelManip(${1:[p1}, ${2:p2]})$0",
-        "description": ""
-    },
-    "SecureRandom": {
-        "prefix": "SecureRandom",
-        "body": "SecureRandom()$0",
-        "description": "Interface for the operating system's crypto-secure PRNG."
-    },
-    "VoxelArea": {
-        "prefix": "VoxelArea",
-        "body": "VoxelArea:new({MinEdge = ${1:pmin}, MaxEdge = ${2:pmax}})$0",
-        "description": "A helper class for voxel areas."
-    },
-    "PerlinNoiseMap": {
-        "prefix": "PerlinNoiseMap",
-        "body": "PerlinNoiseMap(${1:noiseparams}, ${2:size})$0",
-        "description": "A fast, bulk perlin noise generator."
-    },
-    "PcgRandom": {
-        "prefix": "PcgRandom",
-        "body": "PcgRandom(${1:seed}, ${2:[sequence]}])$0",
-        "description": "A 32-bit pseudorandom number generator.\nUses PCG32, an algorithm of the permuted congruential generator family, offering very strong randomness."
-    },
-    "ItemStack": {
-        "prefix": "ItemStack",
-        "body": "ItemStack(${1:ItemStack|itemstring|table|nil})$0",
-        "description": "An `ItemStack` is a stack of items."
-    },
-    "AreaStore": {
-        "prefix": "AreaStore",
-        "body": "AreaStore(${1:[type_name]})$0",
-        "description": "A fast access data structure to store areas, and find areas near a given position or area.\nEvery area has a `data` string attribute to store additional information."
-    }
+  "Raycast": {
+    "prefix": "Raycast",
+    "body": "Raycast(${1:pos1}, ${2:pos2}, ${3:objects}, ${4:liquids})$0",
+    "description": "A raycast on the map. It works with selection boxes."
+  },
+  "Settings": {
+    "prefix": "Settings",
+    "body": "Settings(${1:filename})$0",
+    "description": "An interface to read config files in the format of `minetest.conf`."
+  },
+  "PseudoRandom": {
+    "prefix": "PseudoRandom",
+    "body": "PseudoRandom(${1:seed}, ${2:[sequence]}])$0",
+    "description": "A 32-bit pseudorandom number generator.\nUses PCG32, an algorithm of the permuted congruential generator family, offering very strong randomness."
+  },
+  "PerlinNoise": {
+    "prefix": "PerlinNoise",
+    "body": "PerlinNoise(${1:noiseparams})$0",
+    "description": "A perlin noise generator."
+  },
+  "VoxelManip": {
+    "prefix": "VoxelManip",
+    "body": "VoxelManip(${1:[p1}, ${2:p2]})$0",
+    "description": ""
+  },
+  "SecureRandom": {
+    "prefix": "SecureRandom",
+    "body": "SecureRandom()$0",
+    "description": "Interface for the operating system's crypto-secure PRNG."
+  },
+  "VoxelArea": {
+    "prefix": "VoxelArea",
+    "body": "VoxelArea:new({MinEdge = ${1:pmin}, MaxEdge = ${2:pmax}})$0",
+    "description": "A helper class for voxel areas."
+  },
+  "PerlinNoiseMap": {
+    "prefix": "PerlinNoiseMap",
+    "body": "PerlinNoiseMap(${1:noiseparams}, ${2:size})$0",
+    "description": "A fast, bulk perlin noise generator."
+  },
+  "PcgRandom": {
+    "prefix": "PcgRandom",
+    "body": "PcgRandom(${1:seed}, ${2:[sequence]}])$0",
+    "description": "A 32-bit pseudorandom number generator.\nUses PCG32, an algorithm of the permuted congruential generator family, offering very strong randomness."
+  },
+  "ItemStack": {
+    "prefix": "ItemStack",
+    "body": "ItemStack(${1:ItemStack|itemstring|table|nil})$0",
+    "description": "An `ItemStack` is a stack of items."
+  },
+  "AreaStore": {
+    "prefix": "AreaStore",
+    "body": "AreaStore(${1:[type_name]})$0",
+    "description": "A fast access data structure to store areas, and find areas near a given position or area.\nEvery area has a `data` string attribute to store additional information."
+  }
 }

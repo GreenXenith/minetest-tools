@@ -1,98 +1,102 @@
 {
-    "name": "minetest-tools",
-    "displayName": "Minetest Tools",
-    "description": "Useful tools for Minetest developers.",
-    "icon": "icon.png",
-    "version": "1.4.3",
-    "author": {
-        "name": "GreenXenith"
-    },
-    "publisher": "GreenXenith",
-    "license": "MIT",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/GreenXenith/minetest-tools.git"
-    },
-    "bugs": {
-        "url": "https://github.com/GreenXenith/minetest-tools/issues"
-    },
-    "engines": {
-        "vscode": "^1.41.0"
-    },
-    "categories": [
-        "Other"
+  "name": "minetest-tools",
+  "displayName": "Minetest Tools",
+  "description": "Useful tools for Minetest developers.",
+  "icon": "icon.png",
+  "version": "1.4.3",
+  "author": {
+    "name": "GreenXenith"
+  },
+  "publisher": "GreenXenith",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GreenXenith/minetest-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GreenXenith/minetest-tools/issues"
+  },
+  "engines": {
+    "vscode": "^1.41.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./extension.js",
+  "scripts": {
+    "format": "prettier . --check",
+    "format:fix": "prettier . --write"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.modProject",
+        "title": "Minetest Tools: New Mod Project"
+      },
+      {
+        "command": "extension.gameProject",
+        "title": "Minetest Tools: New Game Project"
+      },
+      {
+        "command": "extension.luacheckrc",
+        "title": "Minetest Tools: Create .luacheckrc"
+      },
+      {
+        "command": "extension.workspaceToggle",
+        "title": "Minetest Tools: Toggle Workspace Intellisense"
+      }
     ],
-    "activationEvents": [
-        "*"
+    "configuration": [
+      {
+        "title": "Minetest Tools",
+        "properties": {
+          "minetest-tools.workspaceOnly": {
+            "type": "boolean",
+            "default": true,
+            "description": "Code snippets will only be shown if certain files (init.lua, mods, modpack.txt) are detected in the main workspace folder."
+          }
+        }
+      }
     ],
-    "main": "./extension.js",
-    "contributes": {
-        "commands": [
-            {
-                "command": "extension.modProject",
-                "title": "Minetest Tools: New Mod Project"
-            },
-            {
-                "command": "extension.gameProject",
-                "title": "Minetest Tools: New Game Project"
-            },
-            {
-                "command": "extension.luacheckrc",
-                "title": "Minetest Tools: Create .luacheckrc"
-            },
-            {
-                "command": "extension.workspaceToggle",
-                "title": "Minetest Tools: Toggle Workspace Intellisense"
-            }
-        ],
-        "configuration": [
-            {
-                "title": "Minetest Tools",
-                "properties": {
-                    "minetest-tools.workspaceOnly": {
-                        "type": "boolean",
-                        "default": true,
-                        "description": "Code snippets will only be shown if certain files (init.lua, mods, modpack.txt) are detected in the main workspace folder."
-                    }
-                }
-            }
-        ],
-        "snippets": [
-            {
-                "language": "lua",
-                "path": "./snippets.json"
-            }
-        ],
-        "grammars": [
-            {
-                "scopeName": "source.formspec",
-                "path": "formspec.json",
-                "injectTo": [
-                    "source.lua"
-                ]
-            }
-        ],
-        "jsonValidation": [
-            {
-                "fileMatch": ".cdb.json",
-                "url": "https://content.minetest.net/api/cdb_schema/"
-            },
-            {
-                "fileMatch": ".cdb.json",
-                "url": "./cdb_schema.json"
-            }
+    "snippets": [
+      {
+        "language": "lua",
+        "path": "./snippets.json"
+      }
+    ],
+    "grammars": [
+      {
+        "scopeName": "source.formspec",
+        "path": "formspec.json",
+        "injectTo": [
+          "source.lua"
         ]
-    },
-    "devDependencies": {
-        "@types/glob": "^7.1.1",
-        "@types/mocha": "^5.2.7",
-        "@types/node": "^12.11.7",
-        "@types/vscode": "^1.41.0",
-        "eslint": "^6.6.0",
-        "glob": "^7.1.5",
-        "mocha": "^10.2.0",
-        "prettier": "^3.3.3",
-        "typescript": "^3.6.4",
-        "vscode-test": "^1.2.2"
-    }
+      }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": ".cdb.json",
+        "url": "https://content.minetest.net/api/cdb_schema/"
+      },
+      {
+        "fileMatch": ".cdb.json",
+        "url": "./cdb_schema.json"
+      }
+    ]
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.11.7",
+    "@types/vscode": "^1.41.0",
+    "eslint": "^6.6.0",
+    "glob": "^7.1.5",
+    "mocha": "^10.2.0",
+    "prettier": "^3.3.3",
+    "typescript": "^3.6.4",
+    "vscode-test": "^1.2.2"
+  }
 }
