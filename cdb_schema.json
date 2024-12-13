@@ -199,18 +199,12 @@
         "forums": {
             "description": "Forum Topic ID",
             "minimum": 0,
-            "type": [
-                "integer",
-                "null"
-            ]
+            "type": ["integer", "null"]
         },
         "issue_tracker": {
             "description": "Issue Tracker URL",
             "format": "uri",
-            "type": [
-                "string",
-                "null"
-            ]
+            "type": ["string", "null"]
         },
         "license": {
             "$ref": "#/$defs/license",
@@ -218,10 +212,7 @@
         },
         "long_description": {
             "description": "Package Long Description",
-            "type": [
-                "string",
-                "null"
-            ]
+            "type": ["string", "null"]
         },
         "media_license": {
             "$ref": "#/$defs/license",
@@ -239,10 +230,7 @@
         },
         "short_description": {
             "description": "Package Short Description",
-            "type": [
-                "string",
-                "null"
-            ]
+            "type": ["string", "null"]
         },
         "tags": {
             "description": "Package Tags",
@@ -369,32 +357,18 @@
         },
         "type": {
             "description": "Package Type",
-            "enum": [
-                "MOD",
-                "GAME",
-                "TXP"
-            ],
-            "enumDescriptions": [
-                "Mod",
-                "Game",
-                "Texture Pack"
-            ]
+            "enum": ["MOD", "GAME", "TXP"],
+            "enumDescriptions": ["Mod", "Game", "Texture Pack"]
         },
         "video_url": {
             "description": "URL to a Video",
             "format": "uri",
-            "type": [
-                "string",
-                "null"
-            ]
+            "type": ["string", "null"]
         },
         "website": {
             "description": "Website URL",
             "format": "uri",
-            "type": [
-                "string",
-                "null"
-            ]
+            "type": ["string", "null"]
         }
     },
     "title": "CDB Config",

@@ -26,6 +26,13 @@
         "*"
     ],
     "main": "./extension.js",
+    "scripts": {
+        "format": "prettier . --check",
+        "format:fix": "prettier . --write"
+    },
+    "prettier": {
+        "tabWidth": 4
+    },
     "contributes": {
         "commands": [
             {
@@ -91,6 +98,7 @@
         "eslint": "^6.6.0",
         "glob": "^7.1.5",
         "mocha": "^10.2.0",
+        "prettier": "3.3.3",
         "typescript": "^3.6.4",
         "vscode-test": "^1.2.2"
     }
