@@ -1,7 +1,7 @@
 {
     "name": "minetest-tools",
-    "displayName": "Minetest Tools",
-    "description": "Useful tools for Minetest developers.",
+    "displayName": "Luanti Tools",
+    "description": "Useful tools for Luanti developers.",
     "icon": "icon.png",
     "version": "1.4.3",
     "author": {
@@ -11,10 +11,10 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/GreenXenith/minetest-tools.git"
+        "url": "https://github.com/GreenXenith/luanti-tools.git"
     },
     "bugs": {
-        "url": "https://github.com/GreenXenith/minetest-tools/issues"
+        "url": "https://github.com/GreenXenith/luanti-tools/issues"
     },
     "engines": {
         "vscode": "^1.41.0"
@@ -37,24 +37,24 @@
         "commands": [
             {
                 "command": "extension.modProject",
-                "title": "Minetest Tools: New Mod Project"
+                "title": "Luanti Tools: New Mod Project"
             },
             {
                 "command": "extension.gameProject",
-                "title": "Minetest Tools: New Game Project"
+                "title": "Luanti Tools: New Game Project"
             },
             {
                 "command": "extension.luacheckrc",
-                "title": "Minetest Tools: Create .luacheckrc"
+                "title": "Luanti Tools: Create .luacheckrc"
             },
             {
                 "command": "extension.workspaceToggle",
-                "title": "Minetest Tools: Toggle Workspace Intellisense"
+                "title": "Luanti Tools: Toggle Workspace Intellisense"
             }
         ],
         "configuration": [
             {
-                "title": "Minetest Tools",
+                "title": "Luanti Tools",
                 "properties": {
                     "minetest-tools.workspaceOnly": {
                         "type": "boolean",
@@ -82,7 +82,7 @@
         "jsonValidation": [
             {
                 "fileMatch": ".cdb.json",
-                "url": "https://content.minetest.net/api/cdb_schema/"
+                "url": "https://content.luanti.org/api/cdb_schema/"
             },
             {
                 "fileMatch": ".cdb.json",

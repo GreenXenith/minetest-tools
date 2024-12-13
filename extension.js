@@ -234,8 +234,8 @@ function activate(context) {
             conf.update("workspaceOnly", newVal, true);
             vscode.window.showInformationMessage(
                 newVal
-                    ? "Minetest Intellisense active in workspace only."
-                    : "Minetest Intellisense active for all Lua files.",
+                    ? "Luanti Intellisense active in workspace only."
+                    : "Luanti Intellisense active for all Lua files.",
             );
         },
     );
@@ -248,7 +248,7 @@ function activate(context) {
         toggle,
     );
 
-    console.log("Minetest Tools extension is active.");
+    console.log("Luanti Tools extension is active.");
 }
 exports.activate = activate;
 
