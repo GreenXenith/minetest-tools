@@ -1,0 +1,3 @@
+# lua_api.md must have LF, not CRLF, to be parsed correctly
+*.png -text
+* text eol=lf
