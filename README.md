@@ -15,15 +15,17 @@ Note: Code snippets were generated from `lua_api.md` using `snippets.js`. Qualit
 
 -   `minetest-tools.workspaceOnly`: Code snippets will only be shown if certain files/folders (`init.lua`, `mods`, `modpack.txt`) are detected in the main workspace folder (default: `true`).
 
--   `editor.quickSuggestions.strings`: Some snippets (formspecs, texture modifiers) depend on string suggestions being enabled. This can be very annoying sometimes, so the snippets will only work if the `string` key in `editor.quickSuggestions` is set to `true`.  
-     It should look something like this:
-    `json
-"editor.quickSuggestions": {
-	"other": true,
-	"comments": false,
-	"strings": true
-}
-`
+-   `editor.quickSuggestions.strings`: Some snippets (formspecs, texture modifiers) depend on string suggestions being enabled. This can be very annoying sometimes, so the snippets will only work if the `string` key in `editor.quickSuggestions` is set to `true`.
+
+    It should look something like this:
+
+    ```json
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": true
+    }
+    ```
 
 ## TODO
 
