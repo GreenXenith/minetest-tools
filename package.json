@@ -31,7 +31,8 @@
         "format": "prettier . --check",
         "format:fix": "prettier . --write",
         "prepackage": "npm run build",
-        "package": "vsce package"
+        "package//": "echo Packages the extension for installation. todo don't use star activation",
+        "package": "vsce package --allow-star-activation"
     },
     "prettier": {
         "tabWidth": 4
