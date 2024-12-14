@@ -27,12 +27,19 @@
     ],
     "main": "./extension.js",
     "scripts": {
-        "build": "node snippets.js && prettier smartsnippets.json --write",
+        "build//": "echo Generates the snippets",
+        "build": "node snippets.js",
+        "build:dev": "build && npm run format:smartsnippets",
+        "format//": "echo Checks formatting of the repo, exiting with error if not formatted",
         "format": "prettier . --check",
+        "format:fix//": "echo Fixes all formatting in the repo",
         "format:fix": "prettier . --write",
+        "format:smartsnippets//": "echo Formats smartsnippets.json for debugging",
+        "format:smartsnippets": "prettier smartsnippets.json --write",
         "prepackage": "npm run build",
         "package//": "echo Packages the extension for installation. todo don't use star activation",
-        "package": "vsce package --allow-star-activation"
+        "package": "vsce package --allow-star-activation",
+        "postpackage": "npm run format:smartsnippets"
     },
     "prettier": {
         "tabWidth": 4
