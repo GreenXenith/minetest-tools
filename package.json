@@ -27,8 +27,11 @@
     ],
     "main": "./extension.js",
     "scripts": {
+        "build": "node snippets.js && prettier smartsnippets.json --write",
         "format": "prettier . --check",
-        "format:fix": "prettier . --write"
+        "format:fix": "prettier . --write",
+        "prepackage": "npm run build",
+        "package": "vsce package"
     },
     "prettier": {
         "tabWidth": 4
@@ -95,11 +98,11 @@
         "@types/mocha": "^5.2.7",
         "@types/node": "^12.11.7",
         "@types/vscode": "^1.41.0",
+        "@vscode/vsce": "^3.2.1",
         "eslint": "^6.6.0",
         "glob": "^7.1.5",
         "mocha": "^10.2.0",
         "prettier": "3.3.3",
-        "typescript": "^3.6.4",
-        "vscode-test": "^1.2.2"
+        "typescript": "^3.6.4"
     }
 }
